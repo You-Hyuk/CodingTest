@@ -1,34 +1,36 @@
+package practice;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
-import java.util.StringTokenizer;
 
-public class BOJ26069 {
+public class BOJ25192 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        int num = Integer.parseInt(br.readLine());
+        List<String> list = new LinkedList<>();
         Set<String> set = new HashSet<>();
-        set.add("ChongChong");
 
-        for (int i = 0; i < num; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            String first = st.nextToken();
-            String second = st.nextToken();
+        int k = Integer.parseInt(br.readLine());
+        int result = 0;
 
-            if (set.contains(first) || set.contains(second)) {
-                set.add(first);
-                set.add(second);
+        for (int i = 0; i < k; i++) {
+            String str = br.readLine();
+            if (str.equals("ENTER")){
+                set.clear();
+            } else if (set.add(str)) {
+                result++;
             }
         }
 
-        bw.write(String.valueOf(set.size()));
+        bw.write(String.valueOf(result));
         bw.flush();
         bw.close();
-        br.close();
     }
 }

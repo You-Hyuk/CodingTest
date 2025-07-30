@@ -1,31 +1,32 @@
-package barkingdog.array;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-public class Main {
+public class BOJ2577 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int result = 1;
+        int[] array = new int[10];
 
-        int[] array = new int[26];
-        String str = br.readLine();
-        int length = str.length();
-
-        for (int i = 0; i < length; i++) {
-            char c = str.charAt(i);
-            array[(int) c - 97] += 1;
+        for (int i = 0; i < 3; i++) {
+            result *= Integer.parseInt(br.readLine());
         }
 
-        StringBuilder sb = new StringBuilder();
+        while (result / 10 != 0) {
+            int num = result % 10;
+            array[num] += 1;
+            result = result / 10;
+        }
+
+        array[result] += 1;
+
         for (int i : array) {
-            sb.append(i).append(" ");
+            bw.write(String.valueOf(i));
+            bw.write("\n");
         }
-
-        bw.write(sb.toString());
 
         bw.flush();
         bw.close();
